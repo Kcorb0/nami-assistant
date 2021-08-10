@@ -1,4 +1,5 @@
 import speech_recognition as sr
+import os
 
 
 def get_mic_audio(recognizer, microphone):
@@ -14,19 +15,25 @@ def get_mic_audio(recognizer, microphone):
 
     return text
 
+def run_steam_game(library_loc):
+    os.startfile(library_loc)
+
 
 rec = sr.Recognizer()
 mic = sr.Microphone()
 run = True
 
+game_location = 'A:/SteamLibrary/steamapps/common/RimWorld/RimWorldWin64.exe'
+
 while run:
     gen_text = get_mic_audio(rec, mic).lower()
+    
+    stop_words = ['end', 'stop', 'cancel', 'terminate']
 
-    if gen_text == 'cloud':
-        print('Yup there are clouds')
-    elif gen_text == 'end':
+    if gen_text in stop_words:
         run = False
+    elif gen_text == 'run rimworld':
+        run_steam_game(game_location)
     else:
         print(gen_text)
     
-
