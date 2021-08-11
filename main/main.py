@@ -1,18 +1,8 @@
-from posixpath import split
 import speech_recognition as sr
+from settings.get_mic_audio import get_mic_audio
 from program_interaction.open_app import open_app
+from general_interaction.date_and_time import get_date, get_time
 
-def get_mic_audio(recognizer, microphone):
-    
-    with microphone as source:
-        recognizer.adjust_for_ambient_noise(source, duration=.5)
-        sample = recognizer.listen(source)
-    try:
-        text = recognizer.recognize_google(sample)
-    except sr.UnknownValueError:
-        text = 'Not sure what you said? Try again.'
-
-    return text
 
 
 rec = sr.Recognizer()
@@ -36,6 +26,12 @@ while run:
             app = split_text[1].title()
             print(f'opening {app}')
             open_app(app)
+
+    elif gen_text == 'date':
+        print(get_date())
+
+    elif gen_text == 'time':
+        print(get_time())
 
     else:
         print(gen_text)
