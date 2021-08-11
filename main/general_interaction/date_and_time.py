@@ -1,7 +1,7 @@
 import datetime
 import sys
 
-def get_date(date_format='long'):
+def get_date(date_format='short'):
     # Get the current date in a short or long format by filling the type parameter
     today = datetime.date.today()
 

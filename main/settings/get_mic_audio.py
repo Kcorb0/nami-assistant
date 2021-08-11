@@ -1,4 +1,5 @@
 import speech_recognition as sr
+from settings.tts_output import tts_output
 
 def get_mic_audio(recognizer, microphone):
     
@@ -8,6 +9,6 @@ def get_mic_audio(recognizer, microphone):
     try:
         text = recognizer.recognize_google(sample)
     except sr.UnknownValueError:
-        text = 'Not sure what you said? Try again.'
+        text = 'I could not process that, sorry. Speak again.'
 
     return text

@@ -1,8 +1,9 @@
 import speech_recognition as sr
 from settings.get_mic_audio import get_mic_audio
+from settings.tts_output import tts_output
 from program_interaction.open_app import open_app
 from general_interaction.date_and_time import get_date, get_time
-
+from general_interaction.greeting import generate_greeting
 
 
 rec = sr.Recognizer()
@@ -24,14 +25,17 @@ while run:
 
         if len(split_text) > 1:
             app = split_text[1].title()
-            print(f'opening {app}')
+            tts_output(f'opening {app}')
             open_app(app)
 
     elif gen_text == 'date':
-        print(get_date())
+        tts_output(get_date())
 
     elif gen_text == 'time':
-        print(get_time())
+        tts_output(get_time())
+
+    elif gen_text in ['hello', 'hey', 'hi', 'yo']:
+        tts_output(generate_greeting())
 
     else:
-        print(gen_text)
+        tts_output(gen_text)
