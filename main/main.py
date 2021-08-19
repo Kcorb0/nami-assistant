@@ -34,7 +34,7 @@ while run:
     elif gen_text == 'time':
         tts_output(get_time())
 
-    elif gen_text in ['hello', 'hey', 'hi', 'yo', 'greetings']:
+    elif gen_text in ['hello', 'hey', 'hi', 'yo', 'greetings', 'wagwarn']:
         tts_output(generate_greeting())
 
     else:
